@@ -58,7 +58,12 @@ class ProductController {
             }
 
             const updateData = {};
-            let productImg = req.file.filename;
+            let productImg;
+
+            if(req.file){
+                productImg = req.file.filename;
+            }
+            
             name ? (updateData.name = name) : null;
             category ? (updateData.category = category) : null;
             price ? (updateData.price = price) : null;
