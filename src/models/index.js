@@ -8,8 +8,8 @@ mongoose
   .connect(mongoDbUrl)
   .then(() => {
     console.log(
-      clc.magenta.underline(`Connection successfully`),
-      clc.cyan.underline(`DB_NAME::${path.basename(mongoDbUrl)}`)
+      clc.green.underline(`Database connection successfully`),
+      clc.yellow.underline(`DB_NAME::${path.basename(mongoDbUrl)}`)
     );
   })
   .catch((error) => {

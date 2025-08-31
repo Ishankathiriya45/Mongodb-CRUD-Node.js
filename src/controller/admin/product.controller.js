@@ -19,12 +19,17 @@ class ProductController {
       const detail = await db.ProductModel.create(productData);
 
       if (detail) {
-        return responseMsg.successCode(1, "Success", detail);
+        return responseMsg.successCode(
+          1,
+          "Product created successfully",
+          detail
+        );
       } else {
         return responseMsg.serverError(0, "No product");
       }
     } catch (error) {
-      return responseMsg.serverError(0, "No product");
+      const errormsg = typeof error == "string" ? error : error.message;
+      return responseMsg.serverError(0, "No product", errormsg);
     }
   }
 
@@ -78,7 +83,7 @@ class ProductController {
       if (editDetail) {
         return responseMsg.successCode(
           1,
-          "product updated Successfully",
+          "Product updated successfully",
           editDetail
         );
       } else {
@@ -102,7 +107,7 @@ class ProductController {
       const removeDetail = await db.ProductModel.deleteOne({ _id: productId });
 
       if (removeDetail) {
-        return responseMsg.successCode(1, "Success", removeDetail);
+        return responseMsg.successCode(1, "Product deleted successfully", removeDetail);
       } else {
         return responseMsg.valiidationError(0, "Failed product deleted");
       }
